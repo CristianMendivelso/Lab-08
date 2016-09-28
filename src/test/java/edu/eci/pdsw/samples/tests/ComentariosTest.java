@@ -64,7 +64,7 @@ public class ComentariosTest {
     }
 
     /*
-    Clase de equivalencia : agregar una nueva entrada al foro
+    Clase de equivalencia : agregar una nueva entrada al foro con datos correctos
     */
     @Test
     public void  ComentariosTest3() throws ExcepcionServiciosForos {
@@ -72,15 +72,10 @@ public class ComentariosTest {
         EntradaForo Ef = new EntradaForo(6,autor,"comentario","titulo",java.sql.Date.valueOf("2000-01-01"));
         ServiciosForoStub Sfs = new ServiciosForoStub();
         Sfs.registrarNuevaEntradaForo(Ef);
-        assertEquals("Agrego una respuesta sin comentario.",Sfs.consultarEntradasForo().size(),2);
+        assertEquals("no se agrego una nueva entrada al foro",Sfs.consultarEntradasForo().size(),2);
     }
     
     
-    
-    @Test
-    public void registroPacienteTest(){
-        
-    }
     
     
 }

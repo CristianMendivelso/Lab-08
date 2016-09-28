@@ -16,6 +16,10 @@
  */
 package edu.eci.pdsw.samples.tests;
 
+import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.entities.Usuario;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
+import edu.eci.pdsw.samples.services.ServiciosForoStub;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -26,17 +30,28 @@ import static org.junit.Assert.*;
  */
 public class EntradasForoTest {
     
+        /*
+    Clase de equivalencia1 : agregar un Foro existente
+    */
+    @Test
+    public void  ComentariosTest1() throws ExcepcionServiciosForos {
+        Usuario autor = new Usuario("cfms@hotmail.com","Christian Mendivelso");
+        EntradaForo ef = new EntradaForo(5,autor,"bienvenidos","foro de salud",java.sql.Date.valueOf("2000-01-01"));
+        ServiciosForoStub sfs = new ServiciosForoStub();
+        sfs.registrarNuevaEntradaForo(ef);
+        assertEquals("no se agrego una nueva entrada al foro",sfs.consultarEntradasForo().size(),2);
+    }
+    
+    
     public EntradasForoTest() {
     }
+    
+    
     
     @Before
     public void setUp() {
     }
     
-    @Test
-    public void registroPacienteTest(){
-        
-    }
     
     
 }
