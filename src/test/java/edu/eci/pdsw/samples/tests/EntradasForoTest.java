@@ -35,7 +35,7 @@ public class EntradasForoTest {
     */
     @Test
     public void  ComentariosTest1() throws ExcepcionServiciosForos {
-        Usuario autor = new Usuario("cfms@hotmail.com","Christian Mendivelso");
+        Usuario autor = new Usuario("cfs@hotmail.com","Christian Mendivelso");
         EntradaForo ef = new EntradaForo(5,autor,"bienvenidos","foro de salud",java.sql.Date.valueOf("2000-01-01"));
         ServiciosForoStub sfs = new ServiciosForoStub();
         sfs.registrarNuevaEntradaForo(ef);
