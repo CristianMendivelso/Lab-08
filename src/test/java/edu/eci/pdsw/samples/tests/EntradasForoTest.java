@@ -31,7 +31,7 @@ import static org.junit.Assert.*;
 public class EntradasForoTest {
     
         /*
-    Clase de equivalencia1 : agregar un Foro existente
+    Clase de equivalencia1 : agregar un Foro existente, debe agregarlo
     */
     @Test
     public void  ComentariosTest1() throws ExcepcionServiciosForos {
