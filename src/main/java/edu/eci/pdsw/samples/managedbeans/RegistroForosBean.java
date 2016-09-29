@@ -17,8 +17,16 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 
+import edu.eci.pdsw.samples.entities.Comentario;
+import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.entities.Usuario;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
+import edu.eci.pdsw.samples.services.ServiciosForoStub;
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 
@@ -26,11 +34,84 @@ import javax.enterprise.context.SessionScoped;
  *
  * @author hcadavid
  */
-@ManagedBean
+@javax.faces.bean.ManagedBean(name="beanRegistroForosBean")
 @SessionScoped
 public class RegistroForosBean implements Serializable{
     
     ServiciosForo sp=ServiciosForo.getInstance();
+    private EntradaForo seleccionado;
+
+    public int getNewidentificador() {
+        return newidentificador;
+    }
+
+    public void setNewidentificador(int newidentificador) {
+        this.newidentificador = newidentificador;
+    }
+
+    public Usuario getNewautor() {
+        return newautor;
+    }
+
+    public void setNewautor(Usuario newautor) {
+        this.newautor = newautor;
+    }
+
+    public String getNewcomentario() {
+        return newcomentario;
+    }
+
+    public void setNewcomentario(String newcomentario) {
+        this.newcomentario = newcomentario;
+    }
+    public String getNewtitulo() {
+        return newtitulo;
+    }
+
+    public void setNewtitulo(String newtitulo) {
+        this.newtitulo = newtitulo;
+    }
+
+    public Date getNewfechayHora() {
+        return newfechayHora;
+    }
+
+    public void setNewfechayHora(Date newfechayHora) {  // puede que se totee por el tipo de fecha , entra un string
+        this.newfechayHora = newfechayHora;
+    }
+    public EntradaForo getSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(EntradaForo seleccionado) {
+        this.seleccionado = seleccionado;
+    }
+
+    public List<EntradaForo> getSp() throws ExcepcionServiciosForos {
+        return sp.consultarEntradasForo();
+    }
+    public void setSp(ServiciosForo sp) {
+        this.sp = sp;
+    }
+    
+    public void add() throws ExcepcionServiciosForos{
+        EntradaForo ef = new EntradaForo(newidentificador,newautor,newcomentario,newtitulo,newfechayHora);
+        sp.registrarNuevaEntradaForo(ef);
+    }
+    
+    private int newidentificador;
+    private Usuario newautor;
+    private String newcomentario;
+    private String newtitulo;
+    private Date newfechayHora;
+
+    public RegistroForosBean() {
+        
+    }
+
+    
+    
+    
     
     
 }

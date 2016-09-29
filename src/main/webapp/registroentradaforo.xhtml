@@ -6,36 +6,57 @@
 
     <h:body>
     <h:form id="RegistroForo">
-        Productos Disponibles
-        <p:dataTable var="producto" value="#{beanShoppingKart.productos}" selectionMode="single" selection="#{beanShoppingKart.seleccionado}" rowKey="#{producto.id}">
-         <p:column headerText="Id">
-                        <h:outputText value="#{producto.id}" />
+        Foros Actuales
+        <p:dataTable var="foro" value="#{beanRegistroForosBean.sp}" selectionMode="single" selection="#{beanRegistroForosBean.seleccionado}" rowKey="#{foro.identificador}">
+         <p:column headerText="Identificador">
+                        <h:outputText value="#{foro.identificador}" />
                     </p:column>
-        <p:column headerText="Nombre">
-                        <h:outputText value="#{producto.nombre}" />
+        <p:column headerText="Autor">
+            <h:outputText value="#{foro.autor.nombre}" />
                     </p:column>
-        <p:column headerText="Precio">
-                        <h:outputText value="#{producto.precioEnPesos}" />
+        <p:column headerText="Comentario">
+                        <h:outputText value="#{foro.comentario}" />
+                    </p:column>
+        <p:column headerText="Titulo">
+                        <h:outputText value="#{foro.titulo}" />
+                    </p:column>
+        <p:column headerText="Fecha Y Hora">
+                        <h:outputText value="#{foro.fechayHora}" />
                     </p:column>
     </p:dataTable>
-    <br> Digite la cantidad del producto que desee añadir al carro
-    <p:inputText value="#{beanShoppingKart.cantidad}"></p:inputText>
-    <p:commandButton value="Agregar al carrito" update="Formulario_ShoppingKart" actionListener="#{beanShoppingKart.add}"></p:commandButton>
+
+    <br> Digite el identificador del foro
+    <p:inputText value="#{beanRegistroForosBean.newidentificador}"></p:inputText>
+     <br>  Digite el autor del foro
+    <p:inputText value="#{beanRegistroForosBean.newautor}"></p:inputText>
+    Digite el comentario </br> 
+    <p:inputText value="#{beanRegistroForosBean.newcomentario}"></p:inputText>
+    Digite el titulo del foro
+    <p:inputText value="#{beanRegistroForosBean.newtitulo}"></p:inputText>
+    <br>
+    Digite la fecha y hora </br>
+    <p:inputText value="#{beanRegistroForosBean.newfechayHora}"></p:inputText>
+    <p:commandButton value="Agregar foro" update="RegistroForo" actionListener="#{beanRegistroForosBean.add}"></p:commandButton>
     </br>
-        
+ <!--       
     <h:form>
         <h3>Using Managed Bean</h3>
             <h:commandButton action="#{navigationController.moveToPage1}"value="Page1" />
     </h:form>
-        
+    -->    
     </h:form>
  </h:body>
 
 
 </html>
+
+
+<!--
+
         <h:form>
    <h3>Using Managed Bean</h3>
    <h:commandButton action="#{navigationController.moveToPage1}"
    value="Page1" />
 </h:form>
-        
+    
+-->
