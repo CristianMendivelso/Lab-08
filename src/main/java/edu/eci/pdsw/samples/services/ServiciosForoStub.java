@@ -58,6 +58,9 @@ public class ServiciosForoStub extends ServiciosForo{
 
     @Override
     public void registrarNuevaEntradaForo(EntradaForo f) throws ExcepcionServiciosForos {
+        if (f.getAutor()==null) {
+            throw new ExcepcionServiciosForos("el foro no tiene un usuario asociado"+f);
+        }
         synchronized(this){
             f.setIdentificador(foroidcount);            
             foroidcount++;

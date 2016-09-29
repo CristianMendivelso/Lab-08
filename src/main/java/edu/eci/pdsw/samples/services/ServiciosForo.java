@@ -67,7 +67,6 @@ public abstract class ServiciosForo {
      * @throws ExcepcionServiciosForos si f no tiene asociado su  usuario
      */
     public abstract void registrarNuevaEntradaForo(EntradaForo f) throws ExcepcionServiciosForos;
-    
 
     /**
      * Agrega una respuesta a un foro determinado
