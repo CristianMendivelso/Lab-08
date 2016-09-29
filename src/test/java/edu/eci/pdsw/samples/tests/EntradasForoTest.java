@@ -19,10 +19,11 @@ package edu.eci.pdsw.samples.tests;
 import edu.eci.pdsw.samples.entities.EntradaForo;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
+import edu.eci.pdsw.samples.services.ServiciosForo;
 import edu.eci.pdsw.samples.services.ServiciosForoStub;
 import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *
@@ -31,26 +32,46 @@ import static org.junit.Assert.*;
 public class EntradasForoTest {
     
         /*
-    Clase de equivalencia1 : agregar un Foro existente, debe agregarlo
+    Clase de equivalencia1 : el foro que se va a agregar no tiene un usuario
     */
-    @Test
-    public void  ComentariosTest1() throws ExcepcionServiciosForos {
-        Usuario autor = new Usuario("cfs@hotmail.com","Christian Mendivelso");
-        EntradaForo ef = new EntradaForo(5,autor,"bienvenidos","foro de salud",java.sql.Date.valueOf("2000-01-01"));
-        ServiciosForoStub sfs = new ServiciosForoStub();
-        sfs.registrarNuevaEntradaForo(ef);
-        assertEquals("no se agrego una nueva entrada al foro",sfs.consultarEntradasForo().size(),2);
-    }
     
-    
-    public EntradasForoTest() {
-    }
-    
+    private ServiciosForo sfs;
     
     
     @Before
     public void setUp() {
+        sfs = sfs.getInstance();
     }
+  
+    
+    @Test
+    public void EntradasForoTest1() throws ExcepcionServiciosForos {
+        EntradaForo ef = new EntradaForo();
+        
+        try{
+            sfs.registrarNuevaEntradaForo(ef);
+            assertTrue("No entro a la Excepcion",false);
+        }
+        catch (ExcepcionServiciosForos esf) {
+            esf.printStackTrace();
+            assertTrue("Entra a la ExcepcionServiciosForos ",true);
+        }
+        
+
+       
+        
+    }
+    
+    
+    public void EntradasForoTest2() throws ExcepcionServiciosForos{
+        
+    
+    
+    }
+    
+    
+    
+    
     
     
     

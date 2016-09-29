@@ -67,13 +67,27 @@ public class ServiciosForoStub extends ServiciosForo{
 
     @Override
     public void agregarRespuestaForo(int idforo, Comentario c) throws ExcepcionServiciosForos {
-        EntradaForo f=foros.get(idforo);
-        f.getRespuestas().add(c);
+        if(c.getAutor()==null){
+            throw new ExcepcionServiciosForos("El id foro no existe");
+        }
+        else{
+            EntradaForo f=foros.get(idforo);
+            f.getRespuestas().add(c);
+        }
+        
+        
+        
     }
 
     @Override
     public Usuario consultarUsuario(String email) throws ExcepcionServiciosForos {
-        return usuarios.get(email);
+        if(usuarios.containsValue(email)){
+            return usuarios.get(email);
+        }
+        else{
+            throw new ExcepcionServiciosForos("No existe un usuario asignado al correo");
+        }
+        
     }
     
     
