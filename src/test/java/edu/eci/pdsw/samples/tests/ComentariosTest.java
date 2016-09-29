@@ -48,7 +48,7 @@ public class ComentariosTest {
      * @throws ExcepcionServiciosForos si el comentario no tiene asociado un
      * usuario
      */
-    //@Test
+    @Test
     public void agregarUnaRespuestaSinUsuario() throws ExcepcionServiciosForos {
         ServiciosForo Sf = ServiciosForo.getInstance();
         Comentario C = new Comentario ();
@@ -57,7 +57,7 @@ public class ComentariosTest {
             assertTrue("No se esta arrojando la excepcion de agregar un arespuesta sin usuario",false);
         }
         catch(ExcepcionServiciosForos esf){
-            assertEquals("No se pueden agregar respuestas sin un Usuario Asociado",true);
+            assertTrue("No se pueden agregar respuestas sin un Usuario Asociado",true);
         }
     }
        
@@ -66,7 +66,7 @@ public class ComentariosTest {
      * @throws ExcepcionServiciosForos si no hay usuarios asociados al correo
      * indicado
      */
-   // @Test
+   @Test
     public void consultarUnEmailSinUsuario() throws ExcepcionServiciosForos {
         ServiciosForo Sf = ServiciosForo.getInstance();
         
@@ -75,7 +75,7 @@ public class ComentariosTest {
             assertTrue("No se esta arrojando la excepcion de un email sin usuairo",false);
         }
         catch(ExcepcionServiciosForos esf){
-            assertEquals("el email no tiene un usuario asociado",true);
+            assertTrue("el email no tiene un usuario asociado",true);
         }
 
     }
@@ -84,7 +84,7 @@ public class ComentariosTest {
      * @throws ExcepcionServiciosForos si el identificador no corresponde a 
      * un entrada a foro existente
      */
-       // @Test
+    @Test
     public void consultarUnIdSinForo() throws ExcepcionServiciosForos {
         ServiciosForo Sf = ServiciosForo.getInstance();
         try{
@@ -92,7 +92,7 @@ public class ComentariosTest {
             assertTrue("No se esta arrojando la excepcion de un id sin un foro",false);
         }
         catch(ExcepcionServiciosForos esf){
-            assertEquals("el id no tiene un foro asociado",true);
+            assertTrue("el id no tiene un foro asociado",true);
         }
 
     }

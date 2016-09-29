@@ -8,7 +8,9 @@
     <h:form id="RegistroForo">
         Foros Actuales
         <p:dataTable var="foro" value="#{beanRegistroForosBean.sp}" selectionMode="single" selection="#{beanRegistroForosBean.seleccionado}" rowKey="#{foro.identificador}">
-         <p:column headerText="Identificador">
+         <p:ajax event="rowSelect" listener="#{beanRegistroForosBean.showPage}" update=":RegistroRespuesta" />
+         
+        <p:column headerText="Identificador">
                         <h:outputText value="#{foro.identificador}" />
                     </p:column>
         <p:column headerText="Autor">
@@ -38,25 +40,10 @@
     <p:inputText value="#{beanRegistroForosBean.newfechayHora}"></p:inputText>
     <p:commandButton value="Agregar foro" update="RegistroForo" actionListener="#{beanRegistroForosBean.add}"></p:commandButton>
     </br>
- <!--       
-    <h:form>
-        <h3>Using Managed Bean</h3>
-            <h:commandButton action="#{navigationController.moveToPage1}"value="Page1" />
-    </h:form>
-    -->    
+ 
     </h:form>
  </h:body>
 
 
 </html>
 
-
-<!--
-
-        <h:form>
-   <h3>Using Managed Bean</h3>
-   <h:commandButton action="#{navigationController.moveToPage1}"
-   value="Page1" />
-</h:form>
-    
--->

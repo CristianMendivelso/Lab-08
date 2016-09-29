@@ -5,7 +5,43 @@
     <h:head></h:head>
 
     <h:body>
-        
-    </h:body>
+    <h:form id="RegistroRespuesta">
+        Respuestas al foro
+        <p:dataTable var="foro" value="#{beanRegistroForosBean.seleccionado.respuestas}" >
+        <p:column headerText="Identificador">
+                        <h:outputText value="#{foro.identificador}" />
+                    </p:column>
+        <p:column headerText="Autor">
+            <h:outputText value="#{foro.autor.nombre}" />
+                    </p:column>
+        <p:column headerText="Comentario">
+                        <h:outputText value="#{foro.comentario}" />
+                    </p:column>
+        <p:column headerText="Titulo">
+                        <h:outputText value="#{foro.titulo}" />
+                    </p:column>
+        <p:column headerText="Fecha Y Hora">
+                        <h:outputText value="#{foro.fechayHora}" />
+                    </p:column>
+    </p:dataTable>
+
+    <br> Digite el identificador del foro
+    <p:inputText value="#{beanRegistroForosBean.newidentificador}"></p:inputText>
+     <br>  Digite el autor del foro
+    <p:inputText value="#{beanRegistroForosBean.newautor}"></p:inputText>
+    Digite el comentario </br> 
+    <p:inputText value="#{beanRegistroForosBean.newcomentario}"></p:inputText>
+    Digite el titulo del foro
+    <p:inputText value="#{beanRegistroForosBean.newtitulo}"></p:inputText>
+    <br>
+    Digite la fecha y hora </br>
+    <p:inputText value="#{beanRegistroForosBean.newfechayHora}"></p:inputText>
+    <p:commandButton value="Agregar foro" update="RegistroForo" actionListener="#{beanRegistroForosBean.add}"></p:commandButton>
+    </br>
+ 
+    </h:form>
+ </h:body>
+
 
 </html>
+

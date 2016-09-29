@@ -29,17 +29,36 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 
 /**
  *
  * @author hcadavid
  */
 @javax.faces.bean.ManagedBean(name="beanRegistroForosBean")
+
 @SessionScoped
 public class RegistroForosBean implements Serializable{
     
+    //@ManagedProperty(value="#{param.pageId}")
+    
+    private String pageid="1";
+    
     ServiciosForo sp=ServiciosForo.getInstance();
     private EntradaForo seleccionado;
+    
+    
+    
+    public String showPage(){
+  
+      if(pageid.equals("1")){
+         return "RegistroForo";
+      }
+      else{
+         return "RegistroRespuesta";
+      }
+    
+    }
 
     public int getNewidentificador() {
         return newidentificador;
@@ -84,6 +103,7 @@ public class RegistroForosBean implements Serializable{
     }
 
     public void setSeleccionado(EntradaForo seleccionado) {
+        pageid="2";
         this.seleccionado = seleccionado;
     }
 
