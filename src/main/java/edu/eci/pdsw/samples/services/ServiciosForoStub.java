@@ -77,9 +77,6 @@ public class ServiciosForoStub extends ServiciosForo{
             EntradaForo f=foros.get(idforo);
             f.getRespuestas().add(c);
         }
-        
-        
-        
     }
 
     @Override

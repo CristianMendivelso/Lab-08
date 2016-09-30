@@ -25,39 +25,58 @@ import edu.eci.pdsw.samples.services.ServiciosForo;
 import edu.eci.pdsw.samples.services.ServiciosForoStub;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 /**
  *
  * @author hcadavid
  */
-@javax.faces.bean.ManagedBean(name="beanRegistroForosBean")
+@ManagedBean(name="beanRegistroForosBean")
 
 @SessionScoped
 public class RegistroForosBean implements Serializable{
     
-    //@ManagedProperty(value="#{param.pageId}")
     
-    private String pageid="1";
+    static ServiciosForo sp=ServiciosForo.getInstance();
     
-    ServiciosForo sp=ServiciosForo.getInstance();
-    private EntradaForo seleccionado;
-    
-    
-    
-    public String showPage(){
-  
-      if(pageid.equals("1")){
-         return "RegistroForo";
-      }
-      else{
-         return "RegistroRespuesta";
-      }
-    
+    private EntradaForo temp;
+    private int newidentificador;
+    private String newautor;
+    private String newcomentario;
+    private String newtitulo;
+    private String correo;
+    private String autor2;
+    private String correo2;
+    private String contenido;
+    private EntradaForo seleccionado= new EntradaForo(newidentificador,new Usuario(correo,newautor), newcomentario, newtitulo, new Date(Calendar.getInstance().getTime().getTime()));
+
+    public String getAutor2() {
+        return autor2;
+    }
+
+    public void setAutor2(String autor2) {
+        this.autor2 = autor2;
+    }
+
+    public String getCorreo2() {
+        return correo2;
+    }
+
+    public void setCorreo2(String correo2) {
+        this.correo2 = correo2;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
     public int getNewidentificador() {
@@ -68,12 +87,20 @@ public class RegistroForosBean implements Serializable{
         this.newidentificador = newidentificador;
     }
 
-    public Usuario getNewautor() {
+    public String getNewautor() {
         return newautor;
     }
 
-    public void setNewautor(Usuario newautor) {
+    public void setNewautor(String newautor) {
         this.newautor = newautor;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getNewcomentario() {
@@ -91,20 +118,17 @@ public class RegistroForosBean implements Serializable{
         this.newtitulo = newtitulo;
     }
 
-    public Date getNewfechayHora() {
-        return newfechayHora;
-    }
-
-    public void setNewfechayHora(Date newfechayHora) {  // puede que se totee por el tipo de fecha , entra un string
-        this.newfechayHora = newfechayHora;
-    }
     public EntradaForo getSeleccionado() {
         return seleccionado;
     }
 
     public void setSeleccionado(EntradaForo seleccionado) {
-        pageid="2";
-        this.seleccionado = seleccionado;
+        
+        if (seleccionado!=null){
+            System.out.println("ENTRO");
+            this.seleccionado = seleccionado;
+        }
+        
     }
 
     public List<EntradaForo> getSp() throws ExcepcionServiciosForos {
@@ -115,23 +139,23 @@ public class RegistroForosBean implements Serializable{
     }
     
     public void add() throws ExcepcionServiciosForos{
-        EntradaForo ef = new EntradaForo(newidentificador,newautor,newcomentario,newtitulo,newfechayHora);
+        Usuario u= new Usuario(correo,newautor);
+        EntradaForo ef = new EntradaForo(newidentificador,u,newcomentario,newtitulo,new Date(Calendar.getInstance().getTime().getTime()));
         sp.registrarNuevaEntradaForo(ef);
     }
     
-    private int newidentificador;
-    private Usuario newautor;
-    private String newcomentario;
-    private String newtitulo;
-    private Date newfechayHora;
-
+    public void addrespuesta() throws ExcepcionServiciosForos{
+        try{
+            Usuario u= new Usuario(correo2,autor2);
+            Comentario c= new Comentario(u,contenido,new Date(Calendar.getInstance().getTime().getTime()));
+            sp.agregarRespuestaForo(seleccionado.getIdentificador(),c);
+        }catch(NullPointerException e){
+        
+        }
+    }
+    
+    
     public RegistroForosBean() {
         
     }
-
-    
-    
-    
-    
-    
 }

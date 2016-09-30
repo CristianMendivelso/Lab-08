@@ -53,7 +53,6 @@ public class EntradasForoTest {
             assertTrue("No entro a la Excepcion",false);
         }
         catch (ExcepcionServiciosForos esf) {
-            esf.printStackTrace();
             assertTrue("Entra a la ExcepcionServiciosForos ",true);
         }
         

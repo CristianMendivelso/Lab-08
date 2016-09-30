@@ -5,43 +5,44 @@
     <h:head></h:head>
 
     <h:body>
-    <h:form id="RegistroRespuesta">
-        Respuestas al foro
-        <p:dataTable var="foro" value="#{beanRegistroForosBean.seleccionado.respuestas}" >
-        <p:column headerText="Identificador">
-                        <h:outputText value="#{foro.identificador}" />
-                    </p:column>
-        <p:column headerText="Autor">
-            <h:outputText value="#{foro.autor.nombre}" />
-                    </p:column>
-        <p:column headerText="Comentario">
-                        <h:outputText value="#{foro.comentario}" />
-                    </p:column>
-        <p:column headerText="Titulo">
-                        <h:outputText value="#{foro.titulo}" />
-                    </p:column>
-        <p:column headerText="Fecha Y Hora">
-                        <h:outputText value="#{foro.fechayHora}" />
-                    </p:column>
-    </p:dataTable>
+        <h:form id="RegistroRespuestas">
+            
+            <p:panelGrid columns="2">
+                Autor Del Foro
+                <h:outputLabel value="#{beanRegistroForosBean.seleccionado.autor.nombre}"/>
+                Titulo del foro
+                <h:outputLabel value="#{beanRegistroForosBean.seleccionado.titulo}"/>
+                Comentario del foro
+                <h:outputLabel value="#{beanRegistroForosBean.seleccionado.comentario}"/>
+                Fecha del foro
+                <h:outputLabel value="#{beanRegistroForosBean.seleccionado.fechayHora}"/>
+                
+            </p:panelGrid>
+            <p:dataTable var="Comentario" value="#{beanRegistroForosBean.seleccionado.respuestas}" >
+        
+                <p:column headerText="Autor">
+                    <h:outputLabel value="#{Comentario.autor.nombre}" />
+                            </p:column>
+                <p:column headerText="Contenido ">
+                    <h:outputLabel value="#{Comentario.contenido}" />
+                            </p:column>
+                <p:column headerText="Fecha De Publicacion">
+                    <h:outputLabel value="#{Comentario.fechayHora}" />
+                            </p:column>
+            </p:dataTable>
+            
+            
+            <p:panelGrid columns="2">
+                Digite el nombre del autor de la respuesta
+                <p:inputText value="#{beanRegistroForosBean.autor2}"></p:inputText>
+                Digite el correo del autor de la respuesta
+                <p:inputText value="#{beanRegistroForosBean.correo2}"></p:inputText>
+                Digite el contenido de la respuesta
+                <p:inputText value="#{beanRegistroForosBean.contenido}"></p:inputText>
 
-    <br> Digite el identificador del foro
-    <p:inputText value="#{beanRegistroForosBean.newidentificador}"></p:inputText>
-     <br>  Digite el autor del foro
-    <p:inputText value="#{beanRegistroForosBean.newautor}"></p:inputText>
-    Digite el comentario </br> 
-    <p:inputText value="#{beanRegistroForosBean.newcomentario}"></p:inputText>
-    Digite el titulo del foro
-    <p:inputText value="#{beanRegistroForosBean.newtitulo}"></p:inputText>
-    <br>
-    Digite la fecha y hora </br>
-    <p:inputText value="#{beanRegistroForosBean.newfechayHora}"></p:inputText>
-    <p:commandButton value="Agregar foro" update="RegistroForo" actionListener="#{beanRegistroForosBean.add}"></p:commandButton>
-    </br>
- 
-    </h:form>
- </h:body>
+                <p:commandButton value="Agregar respuesta" update="RegistroRespuestas" actionListener="#{beanRegistroForosBean.addrespuesta()}"></p:commandButton>
+            </p:panelGrid>
 
-
+        </h:form>
+    </h:body>
 </html>
-

@@ -8,8 +8,7 @@
     <h:form id="RegistroForo">
         Foros Actuales
         <p:dataTable var="foro" value="#{beanRegistroForosBean.sp}" selectionMode="single" selection="#{beanRegistroForosBean.seleccionado}" rowKey="#{foro.identificador}">
-         <p:ajax event="rowSelect" listener="#{beanRegistroForosBean.showPage}" update=":RegistroRespuesta" />
-         
+        
         <p:column headerText="Identificador">
                         <h:outputText value="#{foro.identificador}" />
                     </p:column>
@@ -22,25 +21,28 @@
         <p:column headerText="Titulo">
                         <h:outputText value="#{foro.titulo}" />
                     </p:column>
-        <p:column headerText="Fecha Y Hora">
-                        <h:outputText value="#{foro.fechayHora}" />
-                    </p:column>
-    </p:dataTable>
 
-    <br> Digite el identificador del foro
-    <p:inputText value="#{beanRegistroForosBean.newidentificador}"></p:inputText>
-     <br>  Digite el autor del foro
-    <p:inputText value="#{beanRegistroForosBean.newautor}"></p:inputText>
-    Digite el comentario </br> 
-    <p:inputText value="#{beanRegistroForosBean.newcomentario}"></p:inputText>
-    Digite el titulo del foro
-    <p:inputText value="#{beanRegistroForosBean.newtitulo}"></p:inputText>
-    <br>
-    Digite la fecha y hora </br>
-    <p:inputText value="#{beanRegistroForosBean.newfechayHora}"></p:inputText>
-    <p:commandButton value="Agregar foro" update="RegistroForo" actionListener="#{beanRegistroForosBean.add}"></p:commandButton>
-    </br>
- 
+    </p:dataTable>
+        
+        <p:commandButton value="Entrar al foro" id="info" action="registrorespuestaforo" styleClass="ui-priority-primary" />
+        
+        
+        
+        <p:panelGrid columns="2">
+            Digite el identificador del foro
+            <p:inputText value="#{beanRegistroForosBean.newidentificador}"></p:inputText>
+            Digite el autor del foro
+            <p:inputText value="#{beanRegistroForosBean.newautor}"></p:inputText>
+            Digite el correo
+            <p:inputText value="#{beanRegistroForosBean.correo}"></p:inputText>
+            Digite el comentario 
+            <p:inputText value="#{beanRegistroForosBean.newcomentario}"></p:inputText>
+            Digite el titulo del foro
+            <p:inputText value="#{beanRegistroForosBean.newtitulo}"></p:inputText>
+            
+            <p:commandButton value="Agregar foro" update="RegistroForo" actionListener="#{beanRegistroForosBean.add}"></p:commandButton>
+        </p:panelGrid>
+    
     </h:form>
  </h:body>
 
