@@ -28,9 +28,9 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
