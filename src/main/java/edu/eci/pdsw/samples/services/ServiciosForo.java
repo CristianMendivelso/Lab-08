@@ -30,7 +30,7 @@ import java.util.Set;
 public abstract class ServiciosForo {
     
     
-    private static ServiciosForo instance=new ServiciosForoStub();
+    private static ServiciosForo instance=new ServiciosForoDAO();
     
     
     protected ServiciosForo(){        

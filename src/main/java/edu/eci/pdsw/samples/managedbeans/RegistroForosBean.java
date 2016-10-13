@@ -22,14 +22,11 @@ import edu.eci.pdsw.samples.entities.EntradaForo;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
-import edu.eci.pdsw.samples.services.ServiciosForoStub;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -44,9 +41,10 @@ public class RegistroForosBean implements Serializable{
     
     static ServiciosForo sp=ServiciosForo.getInstance();
     
-    private EntradaForo temp;
+    
     private int newidentificador;
     private String newautor;
+    private int idComentario=0;
     private String newcomentario;
     private String newtitulo;
     private String correo;
@@ -147,7 +145,8 @@ public class RegistroForosBean implements Serializable{
     public void addrespuesta() throws ExcepcionServiciosForos{
         try{
             Usuario u= new Usuario(correo2,autor2);
-            Comentario c= new Comentario(u,contenido,new Date(Calendar.getInstance().getTime().getTime()));
+            Comentario c= new Comentario(idComentario,u,contenido,new Date(Calendar.getInstance().getTime().getTime()));
+            idComentario++;
             sp.agregarRespuestaForo(seleccionado.getIdentificador(),c);
         }catch(NullPointerException e){
         
