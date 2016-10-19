@@ -51,7 +51,7 @@ public class RegistroForosBean implements Serializable{
     private String autor2;
     private String correo2;
     private String contenido;
-    private EntradaForo seleccionado= new EntradaForo(newidentificador,new Usuario(correo,newautor), newcomentario, newtitulo, new Date(Calendar.getInstance().getTime().getTime()));
+    private EntradaForo seleccionado;
 
     public String getAutor2() {
         return autor2;
@@ -123,7 +123,6 @@ public class RegistroForosBean implements Serializable{
     public void setSeleccionado(EntradaForo seleccionado) {
         
         if (seleccionado!=null){
-            System.out.println("ENTRO");
             this.seleccionado = seleccionado;
         }
         
