@@ -136,19 +136,26 @@ public class RegistroForosBean implements Serializable{
     }
     
     public void add() throws ExcepcionServiciosForos{
+        
+        if(!correo.equals("") && !newautor.equals("") && !newcomentario.equals("") && !newtitulo.equals("")) {
+        
         Usuario u= new Usuario(correo,newautor);
         EntradaForo ef = new EntradaForo(newidentificador,u,newcomentario,newtitulo,new Date(Calendar.getInstance().getTime().getTime()));
         sp.registrarNuevaEntradaForo(ef);
+        }
     }
     
     public void addrespuesta() throws ExcepcionServiciosForos{
-        try{
-            Usuario u= new Usuario(correo2,autor2);
-            Comentario c= new Comentario(idComentario,u,contenido,new Date(Calendar.getInstance().getTime().getTime()));
-            idComentario++;
-            sp.agregarRespuestaForo(seleccionado.getIdentificador(),c);
-        }catch(NullPointerException e){
-        
+        if(!correo2.equals("") && !autor2.equals("") && !contenido.equals("") ) {
+
+            try{
+                Usuario u= new Usuario(correo2,autor2);
+                Comentario c= new Comentario(idComentario,u,contenido,new Date(Calendar.getInstance().getTime().getTime()));
+                idComentario++;
+                sp.agregarRespuestaForo(seleccionado.getIdentificador(),c);
+            }catch(NullPointerException e){
+
+            }
         }
     }
     

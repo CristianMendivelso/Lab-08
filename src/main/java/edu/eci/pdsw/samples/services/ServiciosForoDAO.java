@@ -23,6 +23,7 @@ import edu.eci.pdsw.samples.persistence.DaoFactory;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -63,7 +64,8 @@ public class ServiciosForoDAO extends ServiciosForo{
 
     @Override
     public EntradaForo consultarEntradaForo(int id) throws ExcepcionServiciosForos {
-        EntradaForo entradaForo=null;
+        EntradaForo entradaForo;
+        
         try {
             daof.beginSession();
             entradaForo= daof.getDaoEntradaForo().load(id);
@@ -71,27 +73,42 @@ public class ServiciosForoDAO extends ServiciosForo{
             throw new ExcepcionServiciosForos("Error al consultar la entrada al foro con id="+id,ex);
             
         }
+        if (entradaForo==null){
+            throw new ExcepcionServiciosForos("Error al consultar la entrada al foro con id="+id);
+        }
         return entradaForo;
     }
 
     @Override
     public void registrarNuevaEntradaForo(EntradaForo f) throws ExcepcionServiciosForos {
+        if (f.getAutor()==null) {
+            throw new ExcepcionServiciosForos("el foro no tiene un usuario asociado"+f);
+        }
+        
         try {
             daof.beginSession();
             daof.getDaoEntradaForo().save(f);
-        } catch (PersistenceException ex) {
+            
+        } 
+        catch (PersistenceException ex) {
             throw new ExcepcionServiciosForos("Error al registrar el nuevo foro",ex);
             
         }
+        
     }
 
     @Override
     public void agregarRespuestaForo(int idforo, Comentario c) throws ExcepcionServiciosForos {
+        
+        if(c.getAutor()==null){
+            throw new ExcepcionServiciosForos("El comentario no tiene autor");
+        }
+        
         try {
             daof.beginSession();
             daof.getDaoEntradaForo().addToForo(idforo, c);
         } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosForos("Error al registrar el nuevo foro",ex);
+            throw new ExcepcionServiciosForos("Error al agregar la respuesta al foro",ex);
             
         }
     }
@@ -99,12 +116,16 @@ public class ServiciosForoDAO extends ServiciosForo{
     @Override
     public Usuario consultarUsuario(String email) throws ExcepcionServiciosForos {
         Usuario u = null;
+        
         try {
             daof.beginSession();
             u=daof.getDaoUsuario().load(email);
         } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosForos("Error al registrar el nuevo foro",ex);
+            throw new ExcepcionServiciosForos("Error consultar el usuario",ex);
             
+        }
+        if (u==null){
+            throw new ExcepcionServiciosForos("Este usuario no existe");
         }
         return u; 
     }

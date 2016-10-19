@@ -44,7 +44,7 @@ public class EntradasForoTest {
     }
   
     
-    //@Test
+    @Test
     public void EntradasForoTest1() throws ExcepcionServiciosForos {
         EntradaForo ef = new EntradaForo();
         
@@ -62,11 +62,7 @@ public class EntradasForoTest {
     }
     
     
-    public void EntradasForoTest2() throws ExcepcionServiciosForos{
-        
-    
-    
-    }
+   
     
     
     

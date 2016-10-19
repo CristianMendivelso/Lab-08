@@ -48,7 +48,7 @@ public class ComentariosTest {
      * @throws ExcepcionServiciosForos si el comentario no tiene asociado un
      * usuario
      */
-    //@Test
+    @Test
     public void agregarUnaRespuestaSinUsuario() throws ExcepcionServiciosForos {
         ServiciosForo Sf = ServiciosForo.getInstance();
         Comentario C = new Comentario ();
@@ -66,7 +66,7 @@ public class ComentariosTest {
      * @throws ExcepcionServiciosForos si no hay usuarios asociados al correo
      * indicado
      */
-   //@Test
+   @Test
     public void consultarUnEmailSinUsuario() throws ExcepcionServiciosForos {
         ServiciosForo Sf = ServiciosForo.getInstance();
         
@@ -84,7 +84,7 @@ public class ComentariosTest {
      * @throws ExcepcionServiciosForos si el identificador no corresponde a 
      * un entrada a foro existente
      */
-    //@Test
+    @Test
     public void consultarUnIdSinForo() throws ExcepcionServiciosForos {
         ServiciosForo Sf = ServiciosForo.getInstance();
         try{
