@@ -175,11 +175,6 @@
 
             </executions>
         </plugin>
-            
-        
-
-            
-        </plugins>
 <reporting>
     <plugins>
         <plugin>
@@ -210,6 +205,12 @@
         </plugin>            
     </plugins>
 </reporting>
+            
+        
+
+            
+        </plugins>
+
     </build>
 
 </project>
