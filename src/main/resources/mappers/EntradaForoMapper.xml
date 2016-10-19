@@ -33,20 +33,20 @@
     
     
             <select id="getEntradasForo" resultMap="EntradaForoResult">
-                select ef.id, ef.fecha_hora, ef.contenido, cm.id as comentario_id, cm.fecha_hora as comentario_fecha_hora, cm.contenido as comentario_contenido, autor.nombre as nombre, autor.email as email, autorcom.nombre as autor_comentario_nombre,  autorcom.email as autor_comentario_email
+                select ef.id, ef.fecha_hora, ef.contenido, cm.id as comentario_id, cm.fecha_hora as comentario_fecha_hora, cm.contenido as comentario_contenido, autor.nombre as ent_nombre, autor.email as ent_email, autorcom.nombre as comentario_autor_comentario_nombre,  autorcom.email as comentario_autor_comentario_email
                 from ENTRADAS_FOROS as ef 
-                LEFT JOIN COMENTARIOS as cm ON ef.`id` = cm.`ENTRADAS_FOROS_id` 
-                LEFT JOIN USUARIOS as autor ON autor.email=ef.USUARIOS_email
+	        LEFT JOIN COMENTARIOS as cm ON ef.`id` = cm.`ENTRADAS_FOROS_id` 
+                INNER JOIN USUARIOS as autor ON autor.email=ef.USUARIOS_email
                 LEFT JOIN USUARIOS as autorcom ON autorcom.email=cm.USUARIOS_email
             </select>
             
             <insert parameterType="map" id="agregarComentarioAEntradaForo" >
-                insert into COMENTARIOS values (#{c.getId}, #(c.getFechayHora), #(c.getContenido), #{idEntradaForo},#(c.getAutor.getEmail))
+                insert into COMENTARIOS values (#{c.id}, #{c.fechayHora}, #{c.contenido}, #{c.identradaForo},#{c.Autor.Email})
 
             </insert>
             
-            <insert parameterType="map" id="registrarNuevaEntradaForo" >                
-                insert into ENTRADAS_FOROS values (#{f.identificador}, #(f.fechayHora), #(f.comentario), #{f.autor.email})
+            <insert parameterType="map" id="registrarNuevaEntradaForo" >    
+                insert into ENTRADAS_FOROS values(#{f.identificador}, #{f.fechayHora}, #{f.comentario}, #{f.autor.email})
             </insert>
             
             <select parameterType="map"  id="getEntradaForo" resultMap="EntradaForoResult">

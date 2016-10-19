@@ -21,6 +21,7 @@ import edu.eci.pdsw.samples.entities.EntradaForo;
 import edu.eci.pdsw.samples.persistence.DaoEntradaForo;
 import edu.eci.pdsw.samples.persistence.PersistenceException;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EntradaForoMapper;
+import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.UsuarioMapper;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
@@ -51,6 +52,7 @@ public class MyBatisDAOEntradaForo implements DaoEntradaForo{
     @Override
     public void save(EntradaForo e) throws PersistenceException {
         EntradaForoMapper pedmp=currentSession.getMapper(EntradaForoMapper.class);
+        
         pedmp.registrarNuevaEntradaForo(e);
     }
 

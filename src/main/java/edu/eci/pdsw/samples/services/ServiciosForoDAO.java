@@ -87,6 +87,9 @@ public class ServiciosForoDAO extends ServiciosForo{
         
         try {
             daof.beginSession();
+            System.out.println("22222222222222222222222222222");
+            System.out.println(f.getAutor().getEmail()+"----"+f.getAutor().getNombre());
+            daof.getDaoUsuario().save(f.getAutor());
             daof.getDaoEntradaForo().save(f);
             
         } 

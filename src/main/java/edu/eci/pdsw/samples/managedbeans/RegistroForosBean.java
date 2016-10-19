@@ -42,7 +42,7 @@ public class RegistroForosBean implements Serializable{
     static ServiciosForo sp=ServiciosForo.getInstance();
     
     
-    private int newidentificador;
+    private int newidentificador=10;
     private String newautor;
     private int idComentario=0;
     private String newcomentario;
@@ -77,13 +77,7 @@ public class RegistroForosBean implements Serializable{
         this.contenido = contenido;
     }
 
-    public int getNewidentificador() {
-        return newidentificador;
-    }
-
-    public void setNewidentificador(int newidentificador) {
-        this.newidentificador = newidentificador;
-    }
+   
 
     public String getNewautor() {
         return newautor;
@@ -138,10 +132,12 @@ public class RegistroForosBean implements Serializable{
     public void add() throws ExcepcionServiciosForos{
         
         if(!correo.equals("") && !newautor.equals("") && !newcomentario.equals("") && !newtitulo.equals("")) {
-        
-        Usuario u= new Usuario(correo,newautor);
-        EntradaForo ef = new EntradaForo(newidentificador,u,newcomentario,newtitulo,new Date(Calendar.getInstance().getTime().getTime()));
-        sp.registrarNuevaEntradaForo(ef);
+     
+            Usuario u= new Usuario(correo,newautor);
+            EntradaForo ef = new EntradaForo(newidentificador,u,newcomentario,newtitulo,new Date(Calendar.getInstance().getTime().getTime()));
+            System.out.println(ef+"AAAAAAAAAAAAAAAAAAAAA");
+            sp.registrarNuevaEntradaForo(ef);
+        newidentificador++;
         }
     }
     
