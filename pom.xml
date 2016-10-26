@@ -176,7 +176,12 @@
             </executions>
         </plugin>
 
- 
+            
+        </plugins>
+
+    </build>
+    <reporting>
+    <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
@@ -203,14 +208,8 @@
                 </formats>
             </configuration>
         </plugin>            
-
-
-            
-        
-
-            
-        </plugins>
-
-    </build>
+    </plugins>
+</reporting>
+    
 
 </project>
