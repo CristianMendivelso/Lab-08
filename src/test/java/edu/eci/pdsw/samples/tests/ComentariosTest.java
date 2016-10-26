@@ -41,6 +41,7 @@ public class ComentariosTest {
     }
         /*
     Clase de equivalencia1 : Foro existente y un comentario No vacio
+    
     */
     
      /*
