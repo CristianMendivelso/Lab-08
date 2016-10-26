@@ -44,7 +44,7 @@ public class RegistroForosBean implements Serializable{
     
     private int newidentificador=10;
     private String newautor;
-    private int idComentario=0;
+    private int idComentario=502;
     private String newcomentario;
     private String newtitulo;
     private String correo;
@@ -135,7 +135,7 @@ public class RegistroForosBean implements Serializable{
      
             Usuario u= new Usuario(correo,newautor);
             EntradaForo ef = new EntradaForo(newidentificador,u,newcomentario,newtitulo,new Date(Calendar.getInstance().getTime().getTime()));
-            System.out.println(ef+"AAAAAAAAAAAAAAAAAAAAA");
+         
             sp.registrarNuevaEntradaForo(ef);
         newidentificador++;
         }
@@ -146,7 +146,8 @@ public class RegistroForosBean implements Serializable{
 
             try{
                 Usuario u= new Usuario(correo2,autor2);
-                Comentario c= new Comentario(idComentario,u,contenido,new Date(Calendar.getInstance().getTime().getTime()));
+                Comentario c= new Comentario(idComentario,u,contenido,new Date(Calendar.getInstance().getTime().getTime()),seleccionado.getIdentificador());
+                System.out.println(seleccionado.getIdentificador());
                 idComentario++;
                 sp.agregarRespuestaForo(seleccionado.getIdentificador(),c);
             }catch(NullPointerException e){

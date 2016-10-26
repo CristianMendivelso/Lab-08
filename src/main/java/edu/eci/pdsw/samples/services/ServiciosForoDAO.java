@@ -47,32 +47,39 @@ public class ServiciosForoDAO extends ServiciosForo{
             Logger.getLogger(ServiciosForoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         daof=DaoFactory.getInstance(properties);
+        try{
+            daof.beginSession();
+        }
+        catch(PersistenceException ex){
+            Logger.getLogger(ServiciosForoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @Override
     public List<EntradaForo> consultarEntradasForo() throws ExcepcionServiciosForos{
         List<EntradaForo> entradasForos=null;
+        
+    
         try {
-            daof.beginSession();
             entradasForos= daof.getDaoEntradaForo().loadAll();
         } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosForos("Error al consultar las entradas al foro",ex); 
-            
+            Logger.getLogger(ServiciosForoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return entradasForos;
     }
 
     @Override
     public EntradaForo consultarEntradaForo(int id) throws ExcepcionServiciosForos {
-        EntradaForo entradaForo;
-        
+        EntradaForo entradaForo=null;
+         
         try {
-            daof.beginSession();
             entradaForo= daof.getDaoEntradaForo().load(id);
         } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosForos("Error al consultar la entrada al foro con id="+id,ex);
-            
+            Logger.getLogger(ServiciosForoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         if (entradaForo==null){
             throw new ExcepcionServiciosForos("Error al consultar la entrada al foro con id="+id);
         }
@@ -86,17 +93,18 @@ public class ServiciosForoDAO extends ServiciosForo{
         }
         
         try {
-            daof.beginSession();
-            System.out.println("22222222222222222222222222222");
-            System.out.println(f.getAutor().getEmail()+"----"+f.getAutor().getNombre());
             daof.getDaoUsuario().save(f.getAutor());
-            daof.getDaoEntradaForo().save(f);
-            
-        } 
-        catch (PersistenceException ex) {
-            throw new ExcepcionServiciosForos("Error al registrar el nuevo foro",ex);
-            
+        } catch (PersistenceException ex) {
+             throw new ExcepcionServiciosForos("error al guardar"+f,ex);
         }
+        try {
+            daof.getDaoEntradaForo().save(f);
+        } catch (PersistenceException ex) {
+            throw new ExcepcionServiciosForos("error al guardar"+f,ex);
+        }
+            
+        
+        
         
     }
 
@@ -106,13 +114,16 @@ public class ServiciosForoDAO extends ServiciosForo{
         if(c.getAutor()==null){
             throw new ExcepcionServiciosForos("El comentario no tiene autor");
         }
-        
         try {
-            daof.beginSession();
+            daof.getDaoUsuario().save(c.getAutor());
+        } catch (PersistenceException ex) {
+             throw new ExcepcionServiciosForos("error al guardar"+c,ex);
+        }
+    
+        try {
             daof.getDaoEntradaForo().addToForo(idforo, c);
         } catch (PersistenceException ex) {
-            throw new ExcepcionServiciosForos("Error al agregar la respuesta al foro",ex);
-            
+            Logger.getLogger(ServiciosForoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -121,7 +132,6 @@ public class ServiciosForoDAO extends ServiciosForo{
         Usuario u = null;
         
         try {
-            daof.beginSession();
             u=daof.getDaoUsuario().load(email);
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosForos("Error consultar el usuario",ex);

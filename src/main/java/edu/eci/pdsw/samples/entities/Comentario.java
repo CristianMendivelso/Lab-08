@@ -32,14 +32,25 @@ public class Comentario {
 
     private int id;
     
+    private int identradaForo;
+
+    public int getIdentradaForo() {
+        return identradaForo;
+    }
+
+    public void setIdentradaForo(int identradaForo) {
+        this.identradaForo = identradaForo;
+    }
+    
     public Comentario() {
     }
 
-    public Comentario(int id,Usuario autor, String contenido, Date fechayHora) {
+    public Comentario(int id,Usuario autor, String contenido, Date fechayHora,int identradaForo) {
         this.id=id;
         this.autor = autor;
         this.contenido = contenido;
         this.fechayHora = fechayHora;
+        this.identradaForo=identradaForo;
     }
 
     public int getId() {

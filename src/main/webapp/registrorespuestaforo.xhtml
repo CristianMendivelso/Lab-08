@@ -40,8 +40,8 @@
                 Digite el contenido de la respuesta
                 <p:inputText value="#{beanRegistroForosBean.contenido}"></p:inputText>
 
-                <p:commandButton value="Agregar respuesta" update="RegistroRespuestas" actionListener="#{beanRegistroForosBean.addrespuesta()}"></p:commandButton>
-                <p:commandButton value="Regresar"  action="registroentradaforo" ></p:commandButton>
+                <p:commandButton value="Agregar respuesta" update="RegistroRespuestas" action="registrorespuestaforo"  actionListener="#{beanRegistroForosBean.addrespuesta()}"></p:commandButton>
+                <p:commandButton value="Regresar"  action="registroentradaforo"  ></p:commandButton>
             </p:panelGrid>
 
         </h:form>

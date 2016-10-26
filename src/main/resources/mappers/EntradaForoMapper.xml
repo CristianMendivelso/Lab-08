@@ -41,7 +41,7 @@
             </select>
             
             <insert parameterType="map" id="agregarComentarioAEntradaForo" >
-                insert into COMENTARIOS values (#{c.id}, #{c.fechayHora}, #{c.contenido}, #{c.identradaForo},#{c.Autor.Email})
+                insert into COMENTARIOS values (#{c.id}, #{c.fechayHora}, #{c.contenido}, #{c.identradaForo},#{c.autor.email})
 
             </insert>
             
